@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Modal from './modal';
-import Button from '@material-ui/core/Button';
+import Modal from './modal'
+import Button from '@material-ui/core/Button'
 
 const ErrorModal = props => {
     return (
@@ -13,7 +13,7 @@ const ErrorModal = props => {
         >
             <p>{props.error}</p>
         </Modal>
-    );
-};
+    )
+}
 
-export default ErrorModal;
+export default ErrorModal

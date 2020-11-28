@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useEffect } from 'react'
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
 
 const TextFieldComponent = props => {
     const [currency, setCurrency] = React.useState('')
@@ -11,10 +11,10 @@ const TextFieldComponent = props => {
         setCurrency(event.target.value)
         props.onUsePokemon(event.target.value)
         setIsUsed(true)
-    };
+    }
     useEffect(() => {
         setUsePokemons(props.pokemons)
-    }, []);
+    }, [])
 
     return (
 
@@ -42,4 +42,4 @@ const TextFieldComponent = props => {
     )
 }
 
-export default TextFieldComponent;
+export default TextFieldComponent

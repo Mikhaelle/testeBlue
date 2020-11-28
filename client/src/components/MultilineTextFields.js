@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextFieldComponent from './TextFieldComponent';
+import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextFieldComponent from './TextFieldComponent'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme) => ({
       width: '15ch',
     },
   },
-}));
+}))
 
 const MultilineTextFields = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
   const [pokemons, setPokemons] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [pokemonInUse, setPokemonInUse] = React.useState('')
@@ -41,7 +41,7 @@ const MultilineTextFields = (props) => {
   }, [pokemonInUse]);
 
   const addNewPokemonInUse = (usedPokemon) => {
-    let pokemon = pokemons[usedPokemon];
+    let pokemon = pokemons[usedPokemon]
     if (pokemon.number > 1) {
       pokemon.number -= 1
       pokemons[usedPokemon] = pokemon
@@ -51,9 +51,6 @@ const MultilineTextFields = (props) => {
     setPokemons((prevPokemons) => { return prevPokemons.concat(pokemon) })
     setPokemonInUse(pokemon.name)
   }
-
-
-
 
   return (
 
@@ -72,4 +69,4 @@ const MultilineTextFields = (props) => {
     </form>
   )
 }
-export default MultilineTextFields;
+export default MultilineTextFields
