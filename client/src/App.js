@@ -15,6 +15,7 @@ function App() {
   const [selectPlayerPokemons2, setselectPlayerPokemons2] = useState([])
   const [baseExperience1, setbaseExperience1] = useState(0)
   const [baseExperience2, setbaseExperience2] = useState(0)
+  const [realizeChange, setRealizeChange] = useState(0)
 
 
 
@@ -72,11 +73,11 @@ function App() {
   }
 
   const makeChange = () => {
-    if (Math.abs(baseExperience1 - baseExperience2) <= 30) {
+    if (selectPlayerPokemons1.length > 1 && selectPlayerPokemons2.length > 1 && Math.abs(baseExperience1 - baseExperience2) <= 30) {
       const player1Id = loadedPlayer[0].id
       const player2Id = loadedPlayer[1].id
       addPokemonToPlayer(player1Id, player2Id)
-      console.log("trocaRealizada")
+      setRealizeChange(1)
     }
   }
 
@@ -93,6 +94,10 @@ function App() {
       }
     })
 
+  }
+
+  const refresh = () => {
+    window.location.reload(false);
   }
 
 
@@ -140,9 +145,17 @@ function App() {
                   baseExperience: {baseExperience1}
                 </div>
               </Paper>
-              <div className="button" >
-                <Button variant="contained" onClick={makeChange}>Realizar Troca</Button>
-              </div>
+              {realizeChange ? null :
+                <div className="button" >
+                  <Button variant="contained" onClick={makeChange}>Realizar Troca</Button>
+                </div>}
+              {realizeChange ?
+                <div className="change">
+                  TROCA REALIZADA!!!!
+                  <div className="button" >
+                    <Button variant="contained" color="primary" onClick={refresh}> Trocar novamente</Button>
+                  </div>
+                </div> : null}
               <Paper elevation={3} >
                 <div className="Title">{loadedPlayer[1].name}
                   <MultilineTextFields playerData={loadedPlayer[1]} playerPokemons={updateSelectPlayerPokemon2} />
