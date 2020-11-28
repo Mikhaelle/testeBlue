@@ -1,42 +1,41 @@
-import './App.css';
+import './App.css'
 import MultilineTextFields from './components/MultilineTextFields'
-import Button from '@material-ui/core/Button';
-import React, { useEffect, useState } from 'react';
-import ErrorModal from './components/errorModal';
-import LoadingSpinner from './components/loadingSpinner';
-import { Container } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button'
+import React, { useEffect, useState } from 'react'
+import ErrorModal from './components/errorModal'
+import LoadingSpinner from './components/loadingSpinner'
+import { Container } from '@material-ui/core'
+import Paper from '@material-ui/core/Paper'
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  const [loadedPlayer, setLoadedPlayer] = useState([]);
-  const [selectPlayerPokemons1, setselectPlayerPokemons1] = useState([]);
-  const [selectPlayerPokemons2, setselectPlayerPokemons2] = useState([]);
-  const [baseExperience1, setbaseExperience1] = useState(0);
-  const [baseExperience2, setbaseExperience2] = useState(0);
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState()
+  const [loadedPlayer, setLoadedPlayer] = useState([])
+  const [selectPlayerPokemons1, setselectPlayerPokemons1] = useState([])
+  const [selectPlayerPokemons2, setselectPlayerPokemons2] = useState([])
+  const [baseExperience1, setbaseExperience1] = useState(0)
+  const [baseExperience2, setbaseExperience2] = useState(0)
 
 
 
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch('https://salty-anchorage-93388.herokuapp.com/api/player');
-        const responseData = await response.json();
-        console.log(responseData)
+        const response = await fetch('https://salty-anchorage-93388.herokuapp.com/api/player')
+        const responseData = await response.json()
         if (!response.ok) {
-          throw new Error(responseData.message);
+          throw new Error(responseData.message)
         }
-        setLoadedPlayer(responseData.players);
+        setLoadedPlayer(responseData.players)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       }
-      setIsLoading(true);
-    };
-    sendRequest();
-    setselectPlayerPokemons1(selectPlayerPokemons1);
-    setselectPlayerPokemons2(selectPlayerPokemons2);
-  }, []);
+      setIsLoading(true)
+    }
+    sendRequest()
+    setselectPlayerPokemons1(selectPlayerPokemons1)
+    setselectPlayerPokemons2(selectPlayerPokemons2)
+  }, [])
 
 
   useEffect(() => {
@@ -44,8 +43,8 @@ function App() {
   }, [baseExperience1])
 
   const errorHandler = () => {
-    setError(null);
-  };
+    setError(null)
+  }
 
 
   const updateSelectPlayerPokemon1 = (pokemonsUsed) => {
@@ -54,12 +53,9 @@ function App() {
 
     let baseExperience = 0
     let findedPokemon = loadedPlayer[0].pokemons.find(poke => poke.name === pokemonsUsed)
-    console.log(findedPokemon)
     if (findedPokemon) {
-      console.log("entrou")
       baseExperience = findedPokemon.baseExperience
       setbaseExperience1((prevBase) => { return baseExperience = prevBase + baseExperience })
-      console.log(baseExperience1)
     }
 
   }
@@ -69,11 +65,9 @@ function App() {
     setselectPlayerPokemons2(actual)
     let baseExperience = 0
     let findedPokemon = loadedPlayer[1].pokemons.find(poke => poke.name === pokemonsUsed)
-    console.log(findedPokemon)
     if (findedPokemon) {
       baseExperience = findedPokemon.baseExperience
       setbaseExperience2((prevBase) => { return baseExperience = prevBase + baseExperience })
-      console.log(baseExperience1)
     }
   }
 
@@ -110,7 +104,6 @@ function App() {
         player2Id,
         pokemonName
       })
-      console.log(requestBody)
       const response = await fetch('https://salty-anchorage-93388.herokuapp.com/api/player/add', {
         method: 'POST',
         headers: {
@@ -119,11 +112,10 @@ function App() {
         body: requestBody
       })
       const responseData = await response.json()
-      console.log(responseData)
     } catch (error) {
       console.log(error)
     }
-  } 
+  }
 
   return (
     <div className="App">
@@ -140,7 +132,6 @@ function App() {
             </div>
           )}{!isLoading ? null :
             <div>
-              {console.log(loadedPlayer)}
               <Paper elevation={3} >
                 <div className="Title">{loadedPlayer[0].name}
                   <MultilineTextFields playerData={loadedPlayer[0]} playerPokemons={updateSelectPlayerPokemon1} />
@@ -165,7 +156,7 @@ function App() {
         </React.Fragment>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
