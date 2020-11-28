@@ -2,7 +2,7 @@
 
 A aplicação foi construida utilizando a stack MERN, mongoDb como banco de dados, React.js para o Front-End e Node.js com express para o Back-End. 
 
-Para rodar a aplicação localmente entre na pasta client/pokechange e rode 
+Para rodar a aplicação localmente entre na pasta client e rode 
       
       npm install
       npm run start
@@ -37,7 +37,4 @@ Métodos permitidos:
 É possível realizar a troca de até 6 pokemons, podendo selecionar vários iguais, a troca é realizada quando a diferença entre as baseExperience dos dois jogadores 
 é  menor que 30. Adicionar mais de um pokemon igual não modifica o valor do baseExperience.
 Uma troca fácil de ser realizada é entre a Kakuna e o Metapod pois ambos tem a mesma baseExperience.
-
-### bug atual
-O bug atual é um erro 500 ao realizar a troca por um problema na requisição paralela do .save no mongodb, se quer ter certeza que a troca foi realizada sem erro é necessário 
-abrir o console e ficar clicando no botão de troca até não aparecer mais o erro 500. Além disso, para refazer a troca e observar as mudanças é necessário atualizar a página manualmente.
+Após a troca o botão para realizar nova troca aparecerá.
