@@ -1,12 +1,12 @@
-const express = require('express');
-const { check } = require('express-validator');
+const express = require('express')
+const { check } = require('express-validator')
 
-const pokemonControllers = require('../controllers/pokemon');
+const pokemonControllers = require('../controllers/pokemon')
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', pokemonControllers.getPokemons);
+router.get('/', pokemonControllers.getPokemons)
 
-router.get('/pokeapi', pokemonControllers.createPokeApi);
+router.get('/pokeapi', pokemonControllers.createPokeApi)
 
-module.exports = router;
+module.exports = router

@@ -1,9 +1,9 @@
-const express = require('express');
-const { check } = require('express-validator');
+const express = require('express')
+const { check } = require('express-validator')
 
-const playerControllers = require('../controllers/player');
+const playerControllers = require('../controllers/player')
 
-const router = express.Router();
+const router = express.Router()
 
 router.post(
     '/',
@@ -13,14 +13,14 @@ router.post(
             .isEmpty(),
     ],
     playerControllers.createPlayers
-);
+)
 
 router.post(
     '/add',
     playerControllers.addPokemonNumber
-);
+)
 
-router.get('/', playerControllers.getPlayers);
+router.get('/', playerControllers.getPlayers)
 
 
-module.exports = router;
+module.exports = router
